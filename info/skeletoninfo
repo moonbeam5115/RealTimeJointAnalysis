@@ -1,0 +1,18 @@
+"keypoints": [ "nose", 
+"left_eye", 
+"right_eye", 
+"left_ear", 
+"right_ear", 
+"right_shoulder",       #joint of interest
+"left_elbow",           
+"right_elbow",          #joint of interest
+"_elbow",              
+"right_wrist", 
+"_wrist", 
+"right_hip",            #joint of interest
+"_hip",                
+"left_knee", 
+"right_knee", 
+"left_ankle", 
+"right_ankle" ]
+
