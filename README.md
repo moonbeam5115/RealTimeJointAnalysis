@@ -1,12 +1,10 @@
 # RealTimeJointAnalysis
-While training to increase my athletic performance, I noticed the importance of mobility in decreasing my chance of injury  while performing athletic movements. The ability of our muscles to lengthen and contract rapidly is necessary in order to execute athletic movements such as sprinting and jumping. If our muscles are not accustomed to stretching beyond a certain extent, muscle pulls, strains, or even tears may occur, leading to injuries that force athletes to cease activity. 
+Motivated by personal injuries in the past and a natural curiosity about human motion, this project looks to highlight the use of computer vision to aid in rehabilitation for injured patients. From personal experience, I know it can be difficult to assess progress when going through recovery. I believe that computer vision systems can be developed to help doctors in diagnosing patients as well as providing valuable biofeedback to patients. 
 
-My idea with this project is to provide a method for joint angle measurement, which could be used to assess an athlete's mobility. This information could be incorporated into their training program, so as to not include movements or exercises that may cause injury to the athlete. It could also be used to determine which athlete could benefit more from mobility and flexibility routines. Finally, in a rehabilitation setting, the measure of joint angles could be used to measure progress for rehabilitation patients as they perform neuromotor exercises to regain range of motion.
-
-Given an image, the Pose Analyzer does 3 things:
-1. Classifies the input image's pose: squatting, bending, or raising arms
-2. Overlays the predicted human joint position for the input image
-3. Draw and display joint angle information currently only works for specific instances of squatting poses. More work will need to be done to generalize the joint angle measurement for all poses and cases
+Using a live webcam feed, the Joint Ananlyzer does 3 things:
+1. 
+2. 
+3. 
 
 # Data Sources
 
