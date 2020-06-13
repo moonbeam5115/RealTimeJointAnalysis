@@ -1,15 +1,10 @@
 # RealTimeJointAnalysis
 Motivated by personal injuries in the past and a natural curiosity about human motion, this project looks to highlight the use of computer vision to aid in rehabilitation for injured patients. From personal experience, I know it can be difficult to assess progress when going through recovery. I believe that computer vision systems can be developed to help doctors in diagnosing patients as well as providing valuable biofeedback to patients. 
 
-Using a live webcam feed, the Joint Ananlyzer does 3 things:
-1. 
-2. 
-3. 
-
-# Data Sources
-
-* Took 291 personal pictures of the following poses: squatting, bending, and raising arms
-* Took 99 pictures from google search for the following poses: squatting, bending, and raising arms
+Using a live webcam feed, the Joint Ananlyzer does 3 things:  
+1. Detects joints and displays them along with bones on top of each frame  
+2. Calculates a rough approximation of the joint reaction force acting at the hip  
+3. Dispays joint angle and hip force information for the user
 
 # Background Information
 
