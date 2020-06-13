@@ -73,6 +73,102 @@ def get_resolution(filename):
 		return int(w), int(h)
 
 
+def draw_joint_angles(img, pivot_pt, distal_pt1, distal_pt2, color=(40, 200, 150)):
+    r_shoulder_x = pivot_pt[0]
+    r_shoulder_y = pivot_pt[1]
+
+    r_elbow_x = distal_pt1[0]
+    r_elbow_y = distal_pt1[1]
+
+    r_hip_x = distal_pt2[0]
+    r_hip_y = distal_pt2[1]
+    
+    shoulder_elbow_angle = atan(abs(r_shoulder_x - r_elbow_x)/ abs(r_shoulder_y - r_elbow_y))
+    shoulder_hip_angle = atan(abs(r_shoulder_x - r_hip_x)/ abs(r_shoulder_y - r_hip_y))             
+    shoulder_anti_flexion = (shoulder_elbow_angle + shoulder_hip_angle)*180/math.pi
+    #print("shoulder angle: ", shoulder_anti_flexion)
+    rotate = 90 - (shoulder_hip_angle*180/math.pi)          
+    cv2.ellipse(img,(r_shoulder_x, r_shoulder_y),(50,50), rotate, 0, shoulder_anti_flexion,color,-1)
+
+    return shoulder_anti_flexion
+
+
+def draw_joint_reaction_force(img, joint, ground_contact, mid_joint, opp_ground_contact, color = (0, 255, 0), thickness = 5):
+    
+    #Biomechanics/Physics Calculations
+    adductor_angle = 71  # in degrees
+    mass = 84.1  #in kg
+    mass_leg = mass/7 # in kg
+    g = 9.81  # in m/s
+    weight = mass*g
+
+    weight_leg = mass_leg*g   #in Newtons
+    d_adductor_attach_hip = 0.05 # in meters
+    d_hip_ankle_x = (joint[0] - ground_contact[0])/5  #pixels converted to meters (rough approximation)
+    d_hip_knee_x = (joint[0] - mid_joint[0])/5   
+    d_hip_oa_x = (joint[0] - opp_ground_contact[0])/5
+
+    #Text set up
+
+    # font 
+    font = cv2.FONT_HERSHEY_SIMPLEX 
+    
+    # org 
+    org = (00, 185) 
+    
+    # fontScale 
+    fontScale = 3
+    
+    # Line thickness of 2 px 
+    thickness = 2
+
+
+    #check for 2 leg vs 1 leg condition:
+    if (ground_contact[1] - opp_ground_contact[1]) > 10:
+        force_normal = weight  # in Newtons        
+        adductor_force_y = (force_normal*d_hip_ankle_x - weight_leg*d_hip_knee_x)/d_adductor_attach_hip
+        adductor_force_x = adductor_force_y/(math.tan(adductor_angle))
+
+        const = 1000
+        hip_force_y = (adductor_force_y - weight_leg + force_normal)
+        hip_force_x = -adductor_force_x
+        hip_force = math.sqrt(hip_force_x**2 + hip_force_y**2)*35 #hip joint reaction force magnitude
+        rf_direction = atan(hip_force_y/hip_force_x)
+        start_pt = (joint[0], joint[1])
+        end_pt_x = start_pt[0] + hip_force_x//1000*1.5
+        end_pt_y = start_pt[1] - hip_force_y//1000*1.5
+        
+    
+        end_pt = (int(end_pt_x), int(end_pt_y))
+            
+        #cv2.putText(img, "one leg", org, font, fontScale, color, thickness, cv2.LINE_AA)  
+    else:
+        force_normal = weight/2 # in Newtons   
+        d_hip_com = 0.12  # in meters  
+
+        adductor_force_y = (weight*d_hip_com - force_normal*d_hip_oa_x)/d_adductor_attach_hip
+        adductor_force_x = adductor_force_y*(math.tan(adductor_angle))      
+        const = 1000
+        hip_force_y = (weight + adductor_force_y - force_normal)
+        hip_force_x = -adductor_force_x
+        hip_force = math.sqrt(hip_force_x**2 + hip_force_y**2)*5  #hip joint reaction force magnitude
+        rf_direction = atan(hip_force_y/hip_force_x)    
+        start_pt = (joint[0], joint[1])
+        end_pt_x = start_pt[0] - hip_force_x//1000//10
+        end_pt_y = start_pt[1] + hip_force_y//1000//10
+        start_pt = (joint[0], joint[1])
+        
+        #cv2.putText(img, "2 legs", org, font, fontScale, color, thickness, cv2.LINE_AA)
+    
+        end_pt = (int(end_pt_x), int(end_pt_y))
+
+    #draw force vector
+    
+    cv2.arrowedLine(img, start_pt, end_pt, color, thickness=thickness)   
+
+    return hip_force
+
+
 def draw_body_joints_2d(img_orig, pts2d, bones=None, draw_indices=None):
     img = img_orig
     #print(pts2d['detectron2']['custom'][0][0][0][0])
@@ -100,33 +196,30 @@ def draw_body_joints_2d(img_orig, pts2d, bones=None, draw_indices=None):
                     cv2.circle(img, pt1, 5, (0,0,255), 5)
         #print(pts2d['detectron2']['custom'][0][0])
 
+        #Left Ankle
+        left_ankle = pts2d['detectron2']['custom'][0][0][15]
 
-        #Right shoulder
-        angle_pt1 = pts2d['detectron2']['custom'][0][0][6]
-        r_shoulder_pt1_x = angle_pt1[0]
-        r_shoulder_pt1_y = angle_pt1[1]                    
-        #Right elbow
-        angle_pt2 = pts2d['detectron2']['custom'][0][0][8]
-        r_elbow_pt2_x = angle_pt2[0]
-        r_elbow_pt2_y = angle_pt2[1]                
-        #Right hip
-        angle_pt3 = pts2d['detectron2']['custom'][0][0][12]
-        r_hip_pt3_x = angle_pt3[0]
-        r_hip_pt3_y = angle_pt3[1]                  
-        shoulder_elbow_angle = atan(abs(r_shoulder_pt1_x - r_elbow_pt2_x)/ abs(r_shoulder_pt1_y - r_elbow_pt2_y))
-        shoulder_hip_angle = atan(abs(r_shoulder_pt1_x - r_hip_pt3_x)/ abs(r_shoulder_pt1_y - r_hip_pt3_y))             
-        shoulder_anti_flexion = (shoulder_elbow_angle + shoulder_hip_angle)*180/math.pi
-        #print("shoulder angle: ", shoulder_anti_flexion)
-        rotate = 90 - (shoulder_hip_angle*180/math.pi)          
-        cv2.ellipse(img,(r_shoulder_pt1_x, r_shoulder_pt1_y),(50,50), rotate, 0, shoulder_anti_flexion,(40, 200, 150),-1)
-        color = (0, 255, 0)
-        thickness = 5
-        start_pt = (r_shoulder_pt1_x, r_shoulder_pt1_y)
-        end_pt = (r_elbow_pt2_x, r_elbow_pt2_y)
-        cv2.arrowedLine(img, start_pt, end_pt, color, thickness=thickness)    
-                
-                
+        #Right Knee
+        right_knee = pts2d['detectron2']['custom'][0][0][14]
     
+        #Right shoulder
+        right_shoulder = pts2d['detectron2']['custom'][0][0][6]
+                
+        #Right elbow
+        right_elbow = pts2d['detectron2']['custom'][0][0][8]
+              
+        #Right hip
+        right_hip = pts2d['detectron2']['custom'][0][0][12]
+
+        #Right Ankle
+
+        right_ankle = pts2d['detectron2']['custom'][0][0][16]               
+
+        shoulder_angle = draw_joint_angles(img, right_shoulder, right_elbow, right_hip)
+        hip_force = draw_joint_reaction_force(img, right_hip, right_ankle, right_knee, left_ankle, color = (0, 255, 0), thickness = 5)
+        return hip_force, shoulder_angle
+
+      
 
 
 def visualize_keypoints(frame, keypoints, draw_joint_indices=None):
@@ -140,25 +233,13 @@ def visualize_keypoints(frame, keypoints, draw_joint_indices=None):
     '''
     body_edges_17 = np.array([[0,1],[1,3],[2,0],[4,2],[5,7],[6,5],[7,9],[8,6],[10,8],
     						  [11,5],[12,6],[12,11],[13,11],[14,12],[15,13],[16,14]])   
-    #Create a temp_dir to save intermediate results:
-    # temp_dir = './temp'
-    # if os.path.exists(temp_dir):
-    # 	remove_dir(temp_dir)
-    # os.makedirs(temp_dir) 
-    #Draw keypoints and save the result:
+
     frame_joint2d = keypoints
 
     #print(frame_joint2d)
 
-    draw_body_joints_2d(frame, frame_joint2d, bones=body_edges_17, draw_indices=draw_joint_indices) 
-    	#img_name = img_path.split('/')[-1].split('.')[0]
-    	#out_path = os.path.join(temp_dir,img_name + '.jpeg')
-    	#cv2.imwrite(out_path,img)  
-    	#print('{}      '.format(i+1), end='\r')    
-    # #Convert images to video:
-    # frames_to_video(temp_dir, mp4_output_path, fps=fps)
-    # remove_dir(temp_dir)  
-    # print ('All done!')
+    hip_force, shoulder_angle = draw_body_joints_2d(frame, frame_joint2d, bones=body_edges_17, draw_indices=draw_joint_indices) 
     
+    return hip_force, shoulder_angle
 
 

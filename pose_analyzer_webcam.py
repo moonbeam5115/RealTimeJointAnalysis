@@ -222,11 +222,28 @@ if __name__ == '__main__':
 	#predict_pose_webcam(pose_predictor, img)    
 	end = time.time()   
 	elapsed_time = end-start    
+	    #Text set up	
+	# font 
+	font = cv2.FONT_HERSHEY_SIMPLEX 
+	
+	# org 
+	org_angle = (00, 55) 
+	org_force = (00, 95)
+	
+	# fontScale 
+	fontScale = 1
+	
+	# Red color in BGR 
+	color = (0, 0, 255) 
+	
+	# Line thickness of 2 px 
+	thickness = 2
 	# print(elapsed_time)	
 	# get the reference to the webcam
 	CAMERA = cv2.VideoCapture(0)
 	# CAMERA.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
 	# CAMERA.set(cv2.CAP_PROP_FRAME_HEIGHT, 320)	
+	degree_sign = u"\N{DEGREE SIGN}"
 	while(True):
 		# read a new frame
 		start = time.time()
@@ -236,10 +253,16 @@ if __name__ == '__main__':
 		#  plt.show()		
 		keyps = predict_pose_webcam(pose_predictor, frame)
 		#Visualize the keypoints:
-		visualize_keypoints(frame, keyps)       
+		hip_force, shoulder_angle = visualize_keypoints(frame, keyps)       
+		print('\u00b0')
 		end = time.time()   
 		elapsed_time = end-start    
-		print("frames per second:", 1/elapsed_time)     
+		print("frames per second:", 1/elapsed_time)
+		frame = cv2.flip(frame, 1)     
+		frame = cv2.resize(frame, (int(640*2), int(360*2)))
+		cv2.rectangle(frame,(0,0),(460,110),(60, 60, 60),-1)
+		cv2.putText(frame, 'Reaction Force: {}'.format(int(hip_force//1000)) + ' N', org_force, font, fontScale, color=(0, 255, 0), thickness=thickness)
+		cv2.putText(frame, 'Shoulder Angle: {} degrees'.format(int(shoulder_angle)), org_angle, font, fontScale, color=(40, 200, 150), thickness=thickness)	
 		cv2.imshow("Capturing frames", frame)       
 		# quit camera if 'q' key is pressed
 		if cv2.waitKey(10) & 0xFF == ord("q"):
