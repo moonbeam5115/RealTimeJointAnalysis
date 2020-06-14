@@ -35,6 +35,8 @@ Using a live webcam feed, the Joint Ananlyzer does 3 things:
 <img src="https://github.com/moonbeam5115/RealTimeJointAnalysis/blob/master/imgs/joint_detection_001.png" width="360">
 </p>
 
+&nbsp;
+
 <div align="center">
 
 **Single Leg Biomechanics**
@@ -43,6 +45,8 @@ Using a live webcam feed, the Joint Ananlyzer does 3 things:
 <p align="center">
 <img src="https://github.com/moonbeam5115/RealTimeJointAnalysis/blob/master/imgs/one_leg_hip_force.png" width="520">
 </p>
+
+&nbsp;
 
 <div align="center">
 
@@ -53,6 +57,8 @@ Using a live webcam feed, the Joint Ananlyzer does 3 things:
 <img src="https://github.com/moonbeam5115/RealTimeJointAnalysis/blob/master/imgs/two_leg_hip_force.png" width="520">
 </p>
 
+&nbsp;
+
 <div align="center">
 
 **Offline Joint Detection**
@@ -61,6 +67,8 @@ Using a live webcam feed, the Joint Ananlyzer does 3 things:
 <p align="center">
 <img src="https://github.com/moonbeam5115/RealTimeJointAnalysis/blob/master/imgs/wave_squat.gif" width="520">
 </p>
+
+&nbsp;
 
 <div align="center">
 
