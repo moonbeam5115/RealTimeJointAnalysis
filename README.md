@@ -71,5 +71,5 @@ Pose classification and joint angle measurement has the potential to be used in 
 [1] Shafrin J, Sullivan J, Goldman DP, Gill TM (2017) The association between observed mobility and quality of life in the near elderly  
 [2] Goldman DP et al. (2018) Long-Term Health and Economic Value of Improved Mobility among Older Adults in the United States  
 [3] Barandasa M, Gamboab H, Fonseca J (2015) A RealTime Biofeedback System Using Visual User Interface for Physical Rehab  
-[4] https://github.com/facebookresearch/VideoPose3D
+[4] https://github.com/facebookresearch/VideoPose3D  
 [5] https://github.com/darkAlert/VideoPose3d_with_Detectron2
