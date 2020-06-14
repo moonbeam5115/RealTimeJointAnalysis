@@ -10,8 +10,8 @@ Using a live webcam feed, the Joint Ananlyzer does 3 things:
 
 * Injuries that limit body mobility can cause depression or anxiety[1] and can be an economic burden [2]  
 * Some promise has been shown in experiments researching visual biofeedback [3]  
-* Inspired by the work from Facebook Research Group: led by Dario Pavllo -- github link [4]  
-* Updated the project to work with Detectron2 with help from: -- github link [5]  
+* Inspired by the work from Facebook Research Group: led by Dario Pavllo -- [4]  
+* Updated the project to work with Detectron2 with help from: -- [5]  
 * Added functionality to work with live webcam feed  
 * Added joint angle measurement at the shoulder joint (relative to torso)  
 * Calculated and displayed joint reaction force at the hip based on 2 biomechanical cases: 1 legged vs 2 legged stance  
@@ -54,23 +54,22 @@ Using a live webcam feed, the Joint Ananlyzer does 3 things:
 &nbsp;
 &nbsp;
 
-# Limitations
+Pose classification and joint angle measurement has the potential to be used in many applications including sports and rehabiliation performance as well as human-computer interaction systems
 
-* 
-* 
-* 
-* Pose classification and joint angle measurement has the potential to be used in many applications including sports and rehabiliation performance as well as human-computer interaction systems
+# Current Limitations
+
+* Low frame rate (~4fps): More powerful gpu could provide higher frame rates
+* Simple biomechanics model: Currently accounts for only one (adductor) muscle at the hip
+* Only works for single person in frame: If multiple people are in frame, only one person will be recognized
 
 # Future Direction
-*
-
-* 
-
-* 
+* Implement 3D joint estimation: Transfer this project into a 3D (more realistic) analysis of forces acting on joints
+* Increase biomechanical model complexity: Include a more complex analysis of joint forces by including more muscles
+* Incorporate pose detection: Utilize a pose detector to display the relevant joint angles for each specific pose
 
 # References
-[1]  
-[2]  
-[3]  
-[4]  
-[5]
+[1] Shafrin J, Sullivan J, Goldman DP, Gill TM (2017) The association between observed mobility and quality of life in the near elderly  
+[2] Goldman DP et al. (2018) Long-Term Health and Economic Value of Improved Mobility among Older Adults in the United States  
+[3] Barandasa M, Gamboab H, Fonseca J (2015) A RealTime Biofeedback System Using Visual User Interface for Physical Rehab  
+[4] https://github.com/facebookresearch/VideoPose3D
+[5] https://github.com/darkAlert/VideoPose3d_with_Detectron2
