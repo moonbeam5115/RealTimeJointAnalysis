@@ -50,7 +50,7 @@ Using a live webcam feed, the Joint Ananlyzer does 3 things:
 </div>
 
 <p align="center">
-<img src="https://github.com/moonbeam5115/RealTimeJointAnalysis/blob/master/imgs/two_legs_hip_force.png" width="520">
+<img src="https://github.com/moonbeam5115/RealTimeJointAnalysis/blob/master/imgs/two_leg_hip_force.png" width="520">
 </p>
 
 <div align="center">
