@@ -8,7 +8,7 @@ Using a live webcam feed, the Joint Ananlyzer does 3 things:
 
 # Background Information
 
-* Injuries that limit body mobility can cause depression or anxiety[1] and can be an economic burden [2]  
+* Injuries that limit body mobility can cause depression or anxiety [1] and can be an economic burden [2]  
 * Some promise has been shown in experiments researching visual biofeedback [3]  
 * Inspired by the work from Facebook Research Group: led by Dario Pavllo -- [4]  
 * Updated the project to work with Detectron2 with help from: -- [5]  
