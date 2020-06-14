@@ -37,7 +37,7 @@ Using a live webcam feed, the Joint Ananlyzer does 3 things:
 
 <div align="center">
 
-**Real Time Joint Detection**
+**Single Leg Biomechanics**
 </div>
 
 <p align="center">
@@ -46,7 +46,7 @@ Using a live webcam feed, the Joint Ananlyzer does 3 things:
 
 <div align="center">
 
-**Real Time Joint Detection**
+**Both Legs Biomechanics**
 </div>
 
 <p align="center">
