@@ -50,7 +50,7 @@ Using a live webcam feed, the Joint Ananlyzer does 3 things:
 
 <div align="center">
 
-**Both Legs Biomechanics**
+**Double leg Biomechanics**
 </div>
 
 <p align="center">
