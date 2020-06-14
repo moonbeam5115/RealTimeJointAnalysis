@@ -18,7 +18,7 @@ Using a live webcam feed, the Joint Ananlyzer does 3 things:
 
 # How to Implement
 
-* (Make sure you have a webcam connected to your computer)  
+* Make sure you have a webcam connected to your computer  
 * Install the requirements as described by the install section of [4]  
 * Install detectron2:  
 * Clone this repository  
