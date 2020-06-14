@@ -55,7 +55,7 @@ Using a live webcam feed, the Joint Ananlyzer does 3 things:
 
 <div align="center">
 
-**Real Time Joint Detection**
+**Offline Joint Detection**
 </div>
 
 <p align="center">
@@ -64,7 +64,7 @@ Using a live webcam feed, the Joint Ananlyzer does 3 things:
 
 <div align="center">
 
-**Real Time Joint Detection**
+**Real Time Joint Velocity using MATLAB**
 </div>
 
 <p align="center">
