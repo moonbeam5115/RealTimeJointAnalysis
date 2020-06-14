@@ -16,15 +16,19 @@ Using a live webcam feed, the Joint Ananlyzer does 3 things:
 * Added joint angle measurement at the shoulder joint (relative to torso)  
 * Calculated and displayed joint reaction force at the hip based on 2 biomechanical cases: 1 legged vs 2 legged stance  
 
+# How to Implement
+
+(Make sure you have a webcam connected to your computer)
+Install the requirements as described by the install section of [4]  
+Install detectron2:  
+Clone this repository  
+Run the pose_analyzer_webcam.py script
 
 &nbsp;
 
 # Results
 
-
-
 &nbsp;
-
 
 <div align="center">
 
