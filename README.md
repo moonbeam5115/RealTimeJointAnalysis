@@ -11,7 +11,7 @@ Using a live webcam feed, the Joint Ananlyzer does 3 things:
 * Injuries that limit body mobility can cause depression or anxiety [1] and can be an economic burden [2]  
 * Some promise has been shown in experiments researching visual biofeedback [3]  
 * Inspired by the work from Facebook Research Group: led by Dario Pavllo -- [4]  
-* Updated the project to work with Detectron2 with help from: -- [5]  
+* Updated the project to work with Detectron2 with help from: darkAlert -- [5]  
 * Added functionality to work with live webcam feed  
 * Added joint angle measurement at the shoulder joint (relative to torso)  
 * Calculated and displayed joint reaction force at the hip based on 2 biomechanical cases: 1 legged vs 2 legged stance  
