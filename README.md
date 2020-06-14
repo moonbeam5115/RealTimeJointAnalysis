@@ -28,24 +28,44 @@ Using a live webcam feed, the Joint Ananlyzer does 3 things:
 
 <div align="center">
 
-**Pose Classification, Joint Detection and Joint Angle Measurement**
+**Real Time Joint Detection**
 </div>
 
 <p align="center">
 <img src="https://github.com/moonbeam5115/RealTimeJointAnalysis/blob/master/imgs/joint_detection_001.png" width="360">
 </p>
 
+<div align="center">
+
+**Real Time Joint Detection**
+</div>
+
 <p align="center">
 <img src="https://github.com/moonbeam5115/RealTimeJointAnalysis/blob/master/imgs/one_leg_hip_force.png" width="520">
 </p>
+
+<div align="center">
+
+**Real Time Joint Detection**
+</div>
 
 <p align="center">
 <img src="https://github.com/moonbeam5115/RealTimeJointAnalysis/blob/master/imgs/two_legs_hip_force.png" width="520">
 </p>
 
+<div align="center">
+
+**Real Time Joint Detection**
+</div>
+
 <p align="center">
 <img src="https://github.com/moonbeam5115/RealTimeJointAnalysis/blob/master/imgs/wave_squat.gif" width="520">
 </p>
+
+<div align="center">
+
+**Real Time Joint Detection**
+</div>
 
 <p align="center">
 <img src="https://github.com/moonbeam5115/RealTimeJointAnalysis/blob/master/imgs/RT_JointAnalysis.gif" width="520">
